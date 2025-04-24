@@ -1,21 +1,22 @@
 .feedNavigation {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 20%;
+    align-items: left;
+    width: 10%;
     height: 100vh;
     background-color: #f0f0f0;
 }
 
 .image {
-    width: 20px;
-    height: 20px;
     border-radius: 100%;
-    margin: 0 10px;
+    margin: 2rem;
     align-items: flex-start;
 }
 
 .navigation {
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+
 }
