@@ -1,0 +1,14 @@
+.feedContainer {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between; 
+    width: 100%; 
+    height: 100px; 
+}
+
+.navigationContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
