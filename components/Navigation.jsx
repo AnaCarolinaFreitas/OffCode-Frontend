@@ -15,8 +15,8 @@ export default function Navigation() {
       <nav className={styles.navigation}>
         <ul>
           <NavigationText text="Feed" src="/feed-icon.png" />
-          <NavigationText text="Dúvidas" src="/feed-icon.png"/>
-          <NavigationText text="Perfis" src="/feed-icon.png"/>
+          <NavigationText text="Dúvidas" src="/duvidas.png"/>
+          <NavigationText text="Perfis" src="/profiles.png"/>
         </ul>
         </nav>
     </div>
