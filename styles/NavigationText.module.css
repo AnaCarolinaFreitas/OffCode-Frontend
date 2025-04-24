@@ -12,13 +12,14 @@
     font-family: "Montserrat", sans-serif;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    gap: 10px;
 }
 
 .image {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     margin: 10px 0;
 }
 

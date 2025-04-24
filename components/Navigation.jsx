@@ -7,10 +7,11 @@ export default function Navigation() {
     <div className={styles.feedNavigation}>
       <Image 
       className={styles.image} 
-      src="/LogoOffCode.png" 
+      src="/LogosOffCode.png" 
       width={50} 
       height={50}
-      alt="profile image" />
+      alt="profile image"
+      priority />
       <nav className={styles.navigation}>
         <ul>
           <NavigationText text="Feed" src="/feed-icon.png" />
