@@ -1,15 +1,15 @@
-import styles from "../styles/CardPostagem.module.css";
+import styles from "../styles/CardDuvidas.module.css";
 import Image from "next/image";
 
 import { useState } from "react";
 
-export default function CardPostagem({ src, username, content}) {
+export default function CardDuvida({ src, username, content}) {
     
     const [likeIcon, setLikeIcon] = useState("/coracao.png");
     const [unlikeIcon, setUnlikeIcon] = useState("/coracao-roxo.png");
 
     return (
-        <div className={styles.cardPostagem}>
+        <div className={styles.cardDuvidas}>
             <div className={styles.cardHeader}>
                 <Image 
                     className={styles.image} 

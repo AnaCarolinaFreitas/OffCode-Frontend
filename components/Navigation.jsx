@@ -1,6 +1,7 @@
 import styles from "../styles/Navigation.module.css";
 import NavigationText from "./NavigationText"
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navigation() {
   return (
@@ -14,9 +15,9 @@ export default function Navigation() {
       priority />
       <nav className={styles.navigation}>
         <ul>
-          <NavigationText text="Feed" src="/feed-icon.png" />
-          <NavigationText text="Dúvidas" src="/duvidas.png"/>
-          <NavigationText text="Perfis" src="/profiles.png"/>
+         <Link href="/feed"> <NavigationText text="Feed" src="/feed-icon.png" /> </Link>
+         <Link href="/duvidas"><NavigationText text="Dúvidas" src="/duvidas.png"/> </Link>
+         <Link href="/perfis"> <NavigationText text="Perfis" src="/profiles.png"/> </Link>
         </ul>
         </nav>
     </div>
