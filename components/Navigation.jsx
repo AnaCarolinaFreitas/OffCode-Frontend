@@ -18,6 +18,7 @@ export default function Navigation() {
          <Link href="/feed"> <NavigationText text="Feed" src="/feed-icon.png" /> </Link>
          <Link href="/duvidas"><NavigationText text="Dúvidas" src="/duvidas.png"/> </Link>
          <Link href="/perfis"> <NavigationText text="Perfis" src="/profiles.png"/> </Link>
+         <Link href="/equipe"> <NavigationText text="Equipe" src="/equipe.png"/> </Link>
         </ul>
         </nav>
     </div>
