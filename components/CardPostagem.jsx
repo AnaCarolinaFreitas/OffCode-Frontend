@@ -3,24 +3,35 @@ import Image from "next/image";
 
 import { useState } from "react";
 
-export default function CardPostagem({ src, username, content}) {
+export default function CardPostagem({ usuarios, posts, onClick }) {
     
     const [likeIcon, setLikeIcon] = useState("/coracao.png");
     const [unlikeIcon, setUnlikeIcon] = useState("/coracao-roxo.png");
 
     return (
-        <div className={styles.cardPostagem}>
+        <div className={styles.cardPostagem} onClick={onClick}>
             <div className={styles.cardHeader}>
-                <Image 
-                    className={styles.image} 
-                    src={src} 
-                    width={50} 
+                <Image
+                    className={styles.image}
+                    src={usuarios.foto_perfil}
+                    width={50}
                     height={50}
                     alt="profile image"
                     priority />
-                <h2>{username}</h2>
+                <h2>{usuarios.id_usuario}</h2>
             </div>
-            <p className={styles.cardContent}>{content}</p>
+            <div className={styles.cardContent}>
+                {posts.conteudo_post}
+            
+            <Image
+                className={styles.imagePost}
+                src={posts.anexo}
+                width={500}
+                height={500}
+                alt="post image"
+                priority />
+                </div>
+
             <div className={styles.line}></div>
             <div className={styles.cardFooter}>
                 <button 

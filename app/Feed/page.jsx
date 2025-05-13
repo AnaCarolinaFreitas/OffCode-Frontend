@@ -4,26 +4,30 @@ import styles from "./Feed.module.css";
 import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import CardPostagem from "@/components/CardPostagem";
+import axios from "axios";
 
-// export default function feed() {
-//     const [posts, setPosts] = useState([]);
-
-//     useEffect(() => {
-
-//         const fetchPosts = async () => {
-//             const response = await fetch('/api/posts');
-//             const data = await response.json();
-//             setPosts(data);
-//         };
-//         fetchPosts();
-//     }, []);
-    
 export default function feed() {
+const apiKey = "bernardocaio";
+const fetchData = async (url) => {
+    try {
+        const response = await axios.get(url, {
+            headers: {
+                "x-api-key": apiKey,
+            },
+        });
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error;
+    }
+};
+fetchData("http://localhost:3000/api/post");
+
     return (
         <div className={styles.feedContainer}>
             <Navigation />
-            <CardPostagem src="/LogosOffCode.png" username="OffCode" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
-           
+            {posts.map((post) => (
+                <CardPostagem key={post.id} usuarios={post.usuarios} posts={post.posts} />
+            ))}
         </div>
     )
 
