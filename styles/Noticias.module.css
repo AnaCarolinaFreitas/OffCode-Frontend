@@ -1,0 +1,39 @@
+.sidebar {
+    width: 250px;
+    background-color: #0D0D0D;
+    padding: 20px;
+    overflow-y: auto;
+    border-left: 2px solid #333;
+    position: sticky;
+    top: 80px;
+}
+
+.sidebar h2 {
+    color: #a855f7;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.newsCard {
+    background-color: white; 
+    color: black; 
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.newsCard img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #333;
+}
+
+.newsCard p {
+    margin: 0;
+    color: black; 
+    font-size: 0.9em;
+}
