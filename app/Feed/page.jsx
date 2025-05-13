@@ -1,30 +1,65 @@
 "use client";
+import dotenv from 'dotenv';
+dotenv.config();
 
 import styles from "./feed.module.css";
 import Navigation from "@/components/Navigation";
 import { CardPostagem } from "@/components/CardPostagem"; 
 import Noticias from "@/components/Noticias";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from 'axios';
+import Loader from "@/components/Loader";
+
 
 export default function Feed() {
     const [posts, setPosts] = useState([]);
-    const apiKey = "bernardocaio";
+    const [selectedPost, setSelectedPost] = useState(null);
+    const [allPosts, setAllPosts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    
+
+    const fetchPosts = async (post_id = "") => {
+        setIsLoading(true);
+        try{
+            const url = post_id
+            ? `http://localhost:3000/api/post/${post_id}`
+            : "http://localhost:3000/api/post";
+            const response = await axios.get(url);
+            setPosts(response.data);
+            if (!post_id) {
+                setAllPosts(response.data);
+            }
+        } catch (error) {
+            console.error("Erro ao carregar posts:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const loadPosts = async () => {
+        const fetchComCache = async () => {
+            const cacheKey = "postsData";
+            const cache = sessionStorage.getItem(cacheKey);
+    
+            if (cache) {
+                setPosts(JSON.parse(cache));
+                setIsLoading(false);
+                return;
+            }
+    
             try {
-                const response = await axios.get("http://localhost:3003/api/post", {
-                    headers: {
-                        "x-api-key": apiKey,
-                    },
-                });
+                const response = await axios.get("http://localhost:3000/api/post");
                 setPosts(response.data);
+                sessionStorage.setItem(cacheKey, JSON.stringify(response.data));
             } catch (error) {
-                console.error("Failed to load posts:", error);
+                console.error("Erro ao carregar os posts:", error);
+                alert("Erro ao carregar os posts.");
+            } finally {
+                setIsLoading(false);
             }
         };
-        loadPosts();
+    
+        fetchComCache();
     }, []);
 
     return (
@@ -32,12 +67,12 @@ export default function Feed() {
             <Navigation />
             <div className={styles.mainContent}>
                 <div className={styles.feedContent}>
-                    {posts.length > 0 ? (
+                    {isLoading ? (
+                        <Loader />
+                    ): (
                         posts.map((post, index) => (
-                            <CardPostagem key={post.id || index} usuarios={post.usuarios} posts={post.posts} />
+                            <CardPostagem key={post.id || index} usuarios={post.usuarios} posts={post.posts} />  
                         ))
-                    ) : (
-                        <p>Carregando posts...</p>
                     )}
                 </div>
                 <Noticias />
