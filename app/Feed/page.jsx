@@ -1,6 +1,4 @@
 "use client";
-import dotenv from 'dotenv';
-dotenv.config();
 
 import styles from "./feed.module.css";
 import Navigation from "@/components/Navigation";
@@ -12,6 +10,7 @@ import Loader from "@/components/Loader";
 
 
 export default function Feed() {
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     const [posts, setPosts] = useState([]);
     const [selectedPost, setSelectedPost] = useState(null);
     const [allPosts, setAllPosts] = useState([]);
@@ -37,30 +36,35 @@ export default function Feed() {
     };
 
     useEffect(() => {
-        const fetchComCache = async () => {
-            const cacheKey = "postsData";
-            const cache = sessionStorage.getItem(cacheKey);
-    
-            if (cache) {
-                setPosts(JSON.parse(cache));
-                setIsLoading(false);
-                return;
-            }
-    
-            try {
-                const response = await axios.get("http://localhost:3000/api/post");
-                setPosts(response.data);
-                sessionStorage.setItem(cacheKey, JSON.stringify(response.data));
-            } catch (error) {
-                console.error("Erro ao carregar os posts:", error);
-                alert("Erro ao carregar os posts.");
-            } finally {
-                setIsLoading(false);
-            }
-        };
-    
-        fetchComCache();
-    }, []);
+    const fetchComCache = async () => {
+        const cacheKey = "postsData";
+        const cache = sessionStorage.getItem(cacheKey);
+
+        if (cache) {
+            setPosts(JSON.parse(cache));
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            console.log("API Key usada:", apiKey); // Log para depuração
+            const response = await axios.get("http://localhost:3000/api/post", {
+                headers: {
+                    "x-api-key": apiKey // Confirme se o cabeçalho está correto
+                }
+            });
+            setPosts(response.data);
+            sessionStorage.setItem(cacheKey, JSON.stringify(response.data));
+        } catch (error) {
+            console.error("Erro ao carregar os posts:", error);
+            alert("Erro ao carregar os posts.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    fetchComCache();
+}, []);
 
     return (
         <div className={styles.pageContainer}>
