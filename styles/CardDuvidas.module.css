@@ -1,10 +1,9 @@
 .cardDuvidas {
-    background-color: #2C2C2C;
+    background-color: #FFFFFF;
     border-radius: 20px;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    color: #FFFFFF;
-    width: 70%;
+    width: 100;
 }
 
 .cardHeader {

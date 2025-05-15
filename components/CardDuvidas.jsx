@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { useState } from "react";
 
-export default function CardDuvida({ src, username, content}) {
+export default function CardDuvida({ image, username, content}) {
     
     const [likeIcon, setLikeIcon] = useState("/coracao.png");
     const [unlikeIcon, setUnlikeIcon] = useState("/coracao-roxo.png");
@@ -13,7 +13,7 @@ export default function CardDuvida({ src, username, content}) {
             <div className={styles.cardHeader}>
                 <Image 
                     className={styles.image} 
-                    src={src} 
+                    src={image || "/default-profile.png"} 
                     width={50} 
                     height={50}
                     alt="profile image"

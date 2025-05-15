@@ -47,10 +47,10 @@ export default function Feed() {
         }
 
         try {
-            console.log("API Key usada:", apiKey); // Log para depuração
+            console.log("API Key usada:", apiKey); 
             const response = await axios.get("http://localhost:3000/api/post", {
                 headers: {
-                    "x-api-key": apiKey // Confirme se o cabeçalho está correto
+                    "x-api-key": apiKey 
                 }
             });
             setPosts(response.data);
